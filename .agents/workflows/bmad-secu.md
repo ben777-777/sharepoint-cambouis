@@ -1,5 +1,5 @@
 ---
-name: 'secu'
+name: 'bmad-secu'
 description: 'BMAD Secu - Revue de sécurité applications Vibe Coding (Gemini / Google AI Studio)'
 disable-model-invocation: true
 ---

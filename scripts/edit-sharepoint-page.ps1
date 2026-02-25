@@ -1,30 +1,50 @@
 <#
 .SYNOPSIS
-    Script pour modifier une page SharePoint Online depuis Antigravity via PnP PowerShell.
+    Script complet pour modifier une page SharePoint Online moderne depuis Antigravity via PnP PowerShell.
 
 .DESCRIPTION
+    Sharepoint Cambouis - Outil de mise à jour automatisé de sites.
     Ce script :
-    1. Se connecte au tenant SharePoint cible.
+    1. S'authentifie interactivement au tenant SharePoint cible.
     2. Récupère la page "Site Page" spécifiée.
-    3. Ajoute ou modifie un composant de texte sur la page.
-    4. Sauvegarde et publie les modifications.
+    3. Ajoute ou modifie un composant de texte sur la page avec des balises HTML.
+    4. Sauvegarde et publie les modifications avec commentaire de révision.
+
+.PARAMETER SiteUrl
+    L'URL absolue du site SharePoint cible (ex: https://TENANT.sharepoint.com/sites/MonSite).
+
+.PARAMETER ClientId
+    L'identifiant d'application (Client ID) de votre application Entra ID enregistrée. Requis pour PnP PowerShell.
+
+.PARAMETER PageName
+    Le nom de la page à modifier (ex: Accueil.aspx ou l'URL relative de la page).
+
+.PARAMETER Content
+    Le code HTML ou Texte à injecter à la volée. Par défaut, un encart de test.
+
+.EXAMPLE
+    .\edit-sharepoint-page.ps1 -SiteUrl "https://contoso.sharepoint.com/sites/mon-site" -ClientId "1234abcd-..." -PageName "Accueil.aspx"
+
+.EXAMPLE
+    .\edit-sharepoint-page.ps1 -SiteUrl "https://contoso.sharepoint.com/sites/mon-site" -ClientId "1234abcd-..." -PageName "Index.aspx" -Content "<h1>Nouveau Titre</h1>"
 
 .NOTES
-    Auteur: Antigravity / Flash
+    Auteur: Antigravity (B_ARNAUD) / Flash
     Date: 25/02/2026
+    Documentation: Voir docs/guide-sharepoint-cambouis.md
 #>
 
 param (
-    [Parameter(Mandatory=$true, HelpMessage="L'URL du site SharePoint (ex: https://TENANT.sharepoint.com/sites/MonSite)")]
+    [Parameter(Mandatory = $true, HelpMessage = "L'URL du site SharePoint (ex: https://TENANT.sharepoint.com/sites/MonSite)")]
     [string]$SiteUrl,
 
-    [Parameter(Mandatory=$true, HelpMessage="L'ID de l'application Entra ID pour l'authentification PnP")]
+    [Parameter(Mandatory = $true, HelpMessage = "L'ID de l'application Entra ID pour l'authentification PnP")]
     [string]$ClientId,
 
-    [Parameter(Mandatory=$true, HelpMessage="Le nom de la page (ex: Accueil.aspx ou l'URL relative de la page)")]
+    [Parameter(Mandatory = $true, HelpMessage = "Le nom de la page (ex: Accueil.aspx ou l'URL relative de la page)")]
     [string]$PageName,
 
-    [Parameter(Mandatory=$false, HelpMessage="Le texte HTML ou Markdown à injecter")]
+    [Parameter(Mandatory = $false, HelpMessage = "Le texte HTML ou Markdown à injecter")]
     [string]$Content = "<h2>Mise à jour automatique</h2><p>Ce contenu a été généré via Antigravity et PnP PowerShell !</p>"
 )
 

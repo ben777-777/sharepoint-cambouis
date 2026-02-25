@@ -16,6 +16,11 @@ Ce projet utilise l'architecture **BMAD Fast** pour accélérer le développemen
 2. Une application Entra ID enregistrée sur votre tenant Azure pour autoriser la connexion interactive.
 3. Les urls des sites SharePoint cible que vous souhaitez modifier.
 
+## Documentation
+
+Un guide détaillé d'installation, de paramétrage (Entra ID) et d'utilisation a été mis en place.
+👉 **[Consulter le Guide Complet : docs/guide-sharepoint-cambouis.md](docs/guide-sharepoint-cambouis.md)**
+
 ## Usage
 
 L'utilisation principale consiste à lancer des scripts en leur passant des paramètres. Par exemple :
