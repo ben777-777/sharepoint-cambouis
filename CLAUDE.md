@@ -16,7 +16,7 @@ Les comportements ponctuels ou snippets (pour orienter une discussion, formater 
 ## Méthodologie du Projet (Scripting PnP)
 
 * Le projet actuel sert de base pour la **manipulation de SharePoint**.
-* L'architecture technique cible pour cela est le module **PnP.PowerShell**.
+* L'architecture technique cible pour cela est le module **PnP.PowerShell**. (Reférence complète : `docs/guide-sharepoint-cambouis.md`)
 * Lors de nouveaux scripts ou composants, privilégiez le PowerShell (7.4+) et l'authentification avec `Connect-PnPOnline` via une application "Entra ID". Les identifiants (Tenant, Client ID) ne doivent jamais être codés en dur dans les scripts, mais doivent être passés en paramètres.
 * Utiliser les dossiers désignés par la configuration de BMAD Fast (`_bmad-output/` par défaut) pour planifier, concevoir, et documenter l'avancée du projet.
 * Ne modifiez *pas* la configuration des agents située dans `_bmad/` à moins que l'utilisateur le demande de façon explicite.
